@@ -244,7 +244,9 @@ Recommendations:
 
 ## 📦 Dataset Access
 
-The **SketchJudge dataset** can be downloaded from the following link:  [Dataset Download](https://pan.baidu.com/s/14yVqbQiyG5rNaM9F_nK-SQ), the extraction code is gbmw.
+The **SketchJudge dataset** can be downloaded from the following links:
+- [Baidu Netdisk Download](https://pan.baidu.com/s/14yVqbQiyG5rNaM9F_nK-SQ) (Extraction code: gbmw)
+- [Google Drive Download](https://drive.google.com/file/d/1JBPqQRgbogIruV9RlQlcCCPVCGBkGKQs/view?usp=sharing)
 
 ---
 
