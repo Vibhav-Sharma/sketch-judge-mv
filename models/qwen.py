@@ -66,7 +66,6 @@ class QwenModel(AbstractModel):
         self.model = transformers.Qwen2VLForConditionalGeneration.from_pretrained(
             model_path,
             torch_dtype="auto",
-            attn_implementation="flash_attention_2",
             device_map="auto",
             trust_remote_code=True
         )

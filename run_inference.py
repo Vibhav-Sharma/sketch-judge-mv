@@ -74,6 +74,9 @@ def main() -> None:
         for s in tqdm(querys, desc="Inference"):
             s["response"] = model.generate_from_sample(s)
             fout.write(json.dumps(s, ensure_ascii=False) + "\n")
+            fout.flush()
+            import time
+            time.sleep(4.5)
 
     print("✓ Done – results saved to", out_path.resolve())
 
