@@ -94,13 +94,18 @@ class QwenModel(AbstractModel):
         
         print(f"Vision counts: {vis_counts}")
 
-        outs = self.model.generate(
-            **inputs,
-            max_new_tokens=self.max_new_tokens,
-            temperature=self.temperature,
-            top_p=self.top_p,
-            repetition_penalty=self.repetition_penalty,
-            eos_token_id=self.processor.tokenizer.eos_token_id,
-        )
+        gen_kwargs = {
+            "max_new_tokens": self.max_new_tokens,
+            "repetition_penalty": self.repetition_penalty,
+            "eos_token_id": self.processor.tokenizer.eos_token_id,
+        }
+        if self.temperature > 0:
+            gen_kwargs["temperature"] = self.temperature
+            gen_kwargs["top_p"] = self.top_p
+            gen_kwargs["do_sample"] = True
+        else:
+            gen_kwargs["do_sample"] = False
+
+        outs = self.model.generate(**inputs, **gen_kwargs)
         gen = outs[:, inputs.input_ids.shape[-1]:]
         return self.processor.batch_decode(gen, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
