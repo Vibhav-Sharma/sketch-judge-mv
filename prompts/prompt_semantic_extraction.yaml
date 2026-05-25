@@ -1,0 +1,93 @@
+no_image_no_gt: |
+  You are an expert biological diagram analyzer. Your task is to extract the structured semantic representation of the student's diagram.
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Student's Diagram:
+  <image_0>
+  
+  Analyze the diagram and break it down into a semantic representation. Do not grade the diagram yet.
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object matching this schema:
+  {
+    "figure": "<brief description of the overall figure/structure shown>",
+    "labels": ["list", "of", "all", "text labels"],
+    "annotations": ["list of explanatory annotations, captions, or longer descriptions in the image"],
+    "connectors": ["list of lines/arrows and what they connect, e.g., 'Arrow from nucleus to cytoplasm'"],
+    "relationships": ["list of spatial or logical relationships, e.g., 'A is inside B', 'A is part of B'"]
+  }
+  Constraints:
+  - No extra text outside JSON.
+
+no_image_with_gt: |
+  You are an expert biological diagram analyzer. Your task is to extract the structured semantic representation of the student's diagram.
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Student's Diagram:
+  <image_1>
+  
+  Analyze the diagram and break it down into a semantic representation. Do not grade the diagram yet.
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object matching this schema:
+  {
+    "figure": "<brief description of the overall figure/structure shown>",
+    "labels": ["list", "of", "all", "text labels"],
+    "annotations": ["list of explanatory annotations, captions, or longer descriptions in the image"],
+    "connectors": ["list of lines/arrows and what they connect, e.g., 'Arrow from nucleus to cytoplasm'"],
+    "relationships": ["list of spatial or logical relationships, e.g., 'A is inside B', 'A is part of B'"]
+  }
+  Constraints:
+  - No extra text outside JSON.
+
+image_no_gt: |
+  You are an expert biological diagram analyzer. Your task is to extract the structured semantic representation of the student's diagram based on the question context.
+  
+  Question Diagram:
+  <image_0>
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Student's Diagram:
+  <image_1>
+  
+  Analyze the student's diagram and break it down into a semantic representation. Do not grade the diagram yet.
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object matching this schema:
+  {
+    "figure": "<brief description of the overall figure/structure shown>",
+    "labels": ["list", "of", "all", "text labels"],
+    "annotations": ["list of explanatory annotations, captions, or longer descriptions in the image"],
+    "connectors": ["list of lines/arrows and what they connect, e.g., 'Arrow from nucleus to cytoplasm'"],
+    "relationships": ["list of spatial or logical relationships, e.g., 'A is inside B', 'A is part of B'"]
+  }
+  Constraints:
+  - No extra text outside JSON.
+
+image_with_gt: |
+  You are an expert biological diagram analyzer. Your task is to extract the structured semantic representation of the student's diagram based on the question context.
+  
+  Question Diagram:
+  <image_0>
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Student's Diagram:
+  <image_2>
+  
+  Analyze the student's diagram and break it down into a semantic representation. Do not grade the diagram yet.
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object matching this schema:
+  {
+    "figure": "<brief description of the overall figure/structure shown>",
+    "labels": ["list", "of", "all", "text labels"],
+    "annotations": ["list of explanatory annotations, captions, or longer descriptions in the image"],
+    "connectors": ["list of lines/arrows and what they connect, e.g., 'Arrow from nucleus to cytoplasm'"],
+    "relationships": ["list of spatial or logical relationships, e.g., 'A is inside B', 'A is part of B'"]
+  }
+  Constraints:
+  - No extra text outside JSON.

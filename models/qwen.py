@@ -63,7 +63,7 @@ class QwenModel(AbstractModel):
         self.repetition_penalty = repetition_penalty
 
         self.processor = transformers.AutoProcessor.from_pretrained(model_path, max_pixels=512 * 28 * 28)
-        self.model = transformers.AutoModelForVision2Seq.from_pretrained(
+        self.model = transformers.Qwen2VLForConditionalGeneration.from_pretrained(
             model_path,
             torch_dtype="auto",
             attn_implementation="flash_attention_2",

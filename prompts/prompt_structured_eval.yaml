@@ -1,0 +1,166 @@
+no_image_no_gt: |
+  You are an impartial diagram grader. You are provided with the student's original diagram and its extracted semantic representation.
+  Follow the rubric below to determine whether the student's diagram correctly solves the task.
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Student's Diagram:
+  <image_0>
+  
+  Student's Extracted Semantic Representation:
+  [[STUDENT_SEMANTICS]]
+  
+  RUBRIC — A correct diagram MUST:
+  1. Figure Structure: Include all required structural elements and their spatial/logical relationships.
+  2. Labels: Include all required text labels correctly identifying the structures.
+  3. Connectors: Connectors (lines, arrows) must link the correct structures in the correct direction.
+  4. Annotations: Any additional explanatory text must be scientifically accurate and relevant.
+  
+  A diagram is incorrect if it violates any required structural, semantic, or logical condition.
+  
+  Evaluate correctness using the rubric and the semantic representation. Ignore normal hand-drawn inaccuracies.
+  If incorrect, classify ALL errors using exactly the labels listed below (no new labels, no paraphrasing):
+  [[TAXONOMY_BULLETED]]
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object:
+  {
+    "is_correct": true | false,
+    "error_count": <integer>,
+    "error_list": [
+      {
+        "error_type": "one of the error labels",
+        "error_description_en": "<brief, precise explanation in English (<= 30 words)>"
+      }
+    ]
+  }
+  Constraints:
+  - If "is_correct" is true, then "error_count"=0 and "error_list"=[]
+  - "error_count" MUST equal len("error_list")
+  - No extra text outside JSON.
+
+no_image_with_gt: |
+  You are an impartial diagram grader. You are provided with the student's diagram, its semantic representation, and a reference diagram as the canonical solution.
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Reference Answer:
+  <image_0>
+  
+  Student's Diagram:
+  <image_1>
+  
+  Student's Extracted Semantic Representation:
+  [[STUDENT_SEMANTICS]]
+  
+  RUBRIC — A correct diagram MUST:
+  1. Figure Structure: Preserve the key structural elements and relationships present in the reference.
+  2. Labels: Include all task-critical labels correctly identifying the structures.
+  3. Connectors: Connectors (lines, arrows) must link the correct structures in the correct direction as in the reference.
+  4. Annotations: Any additional explanatory text must be scientifically accurate and equivalent.
+  
+  Evaluate correctness using the rubric, the semantic representation, and comparing to the reference.
+  Ignore normal hand-drawn inaccuracies. If incorrect, classify ALL errors using exactly the labels listed below (no new labels, no paraphrasing):
+  [[TAXONOMY_BULLETED]]
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object:
+  {
+    "is_correct": true | false,
+    "error_count": <integer>,
+    "error_list": [
+      {
+        "error_type": "one of the error labels",
+        "error_description_en": "<brief, precise explanation in English (<= 30 words)>"
+      }
+    ]
+  }
+  Constraints:
+  - If "is_correct" is true, then "error_count"=0 and "error_list"=[]
+  - "error_count" MUST equal len("error_list")
+  - No extra text outside JSON.
+
+image_no_gt: |
+  You are an impartial diagram grader. You are provided with the question diagram, the student's diagram, and its semantic representation.
+  
+  Question Diagram:
+  <image_0>
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Student's Diagram:
+  <image_1>
+  
+  Student's Extracted Semantic Representation:
+  [[STUDENT_SEMANTICS]]
+  
+  RUBRIC — A correct diagram MUST:
+  1. Figure Structure: Include all required structural elements and their spatial/logical relationships.
+  2. Labels: Include all required text labels correctly identifying the structures.
+  3. Connectors: Connectors (lines, arrows) must link the correct structures in the correct direction.
+  4. Annotations: Any additional explanatory text must be scientifically accurate and relevant.
+  
+  Evaluate correctness using the rubric and the semantic representation. Ignore normal hand-drawn inaccuracies.
+  If incorrect, classify ALL errors using exactly the labels listed below (no new labels, no paraphrasing):
+  [[TAXONOMY_BULLETED]]
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object:
+  {
+    "is_correct": true | false,
+    "error_count": <integer>,
+    "error_list": [
+      {
+        "error_type": "one of the error labels",
+        "error_description_en": "<brief, precise explanation in English (<= 30 words)>"
+      }
+    ]
+  }
+  Constraints:
+  - If "is_correct" is true, then "error_count"=0 and "error_list"=[]
+  - "error_count" MUST equal len("error_list")
+  - No extra text outside JSON.
+
+image_with_gt: |
+  You are an impartial diagram grader. You are provided with the question diagram, reference diagram, student's diagram, and its semantic representation.
+  
+  Question Diagram:
+  <image_0>
+  
+  Task:
+  [[QUERY_EN]]
+  
+  Reference Answer:
+  <image_1>
+  
+  Student's Diagram:
+  <image_2>
+  
+  Student's Extracted Semantic Representation:
+  [[STUDENT_SEMANTICS]]
+  
+  RUBRIC — A correct diagram MUST:
+  1. Figure Structure: Preserve the key structural elements and relationships present in the reference.
+  2. Labels: Include all task-critical labels correctly identifying the structures.
+  3. Connectors: Connectors (lines, arrows) must link the correct structures in the correct direction as in the reference.
+  4. Annotations: Any additional explanatory text must be scientifically accurate and equivalent.
+  
+  Evaluate correctness using the rubric, the semantic representation, and comparing to the reference.
+  Ignore normal hand-drawn inaccuracies. If incorrect, classify ALL errors using exactly the labels listed below (no new labels, no paraphrasing):
+  [[TAXONOMY_BULLETED]]
+  
+  OUTPUT REQUIREMENTS — return ONLY a valid JSON object:
+  {
+    "is_correct": true | false,
+    "error_count": <integer>,
+    "error_list": [
+      {
+        "error_type": "one of the error labels",
+        "error_description_en": "<brief, precise explanation in English (<= 30 words)>"
+      }
+    ]
+  }
+  Constraints:
+  - If "is_correct" is true, then "error_count"=0 and "error_list"=[]
+  - "error_count" MUST equal len("error_list")
+  - No extra text outside JSON.

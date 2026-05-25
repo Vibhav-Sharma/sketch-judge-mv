@@ -55,7 +55,10 @@ class GPTModel(AbstractModel):
         self.max_tokens = max_tokens
         self.retry_attempts = retry_attempts
 
-        self.client = OpenAI(api_key=api_key or os.getenv("OPENAI_API_KEY"))
+        self.client = OpenAI(
+            api_key=api_key or os.getenv("OPENAI_API_KEY"),
+            base_url=os.getenv("OPENAI_BASE_URL")
+        )
 
     def _to_openai_messages(self, sample: Dict[str, Any]) -> List[Dict[str, Any]]:
         return _build_messages(sample)
@@ -71,22 +74,26 @@ class GPTModel(AbstractModel):
     def generate_from_sample(self, sample: Dict[str, Any]) -> str:
         messages = self._to_openai_messages(sample)
 
-        for attempt in range(1, self.retry_attempts + 1):
+        for attempt in range(1, 100):
             try:
                 resp = self.client.chat.completions.create(
                     model=self.model_name,
                     messages=messages,
                     temperature=self.temperature,
-                    max_completion_tokens=self.max_tokens,
-                    # max_tokens=self.max_tokens,
+                    max_tokens=self.max_tokens,
                 )
                 return self._extract_text(resp)
             except Exception as e:
-                if attempt >= self.retry_attempts:
-                    logging.error("All retries failed: %s", e)
-                    break
-                sleep_s = min(30, 2 ** (attempt - 1) + random.random())
-                logging.warning(f"Attempt {attempt} failed: {e}. Retry in {sleep_s:.1f}s.")
+                err_str = str(e).lower()
+                if "429" in err_str or "quota" in err_str or "exhausted" in err_str:
+                    sleep_s = 65
+                    logging.warning(f"Rate limit hit (attempt {attempt}): {e}. Sleep for {sleep_s}s.")
+                else:
+                    if attempt >= self.retry_attempts:
+                        logging.error("All retries failed: %s", e)
+                        break
+                    sleep_s = min(30, 2 ** (attempt - 1) + random.random())
+                    logging.warning(f"Attempt {attempt} failed: {e}. Retry in {sleep_s:.1f}s.")
                 time.sleep(sleep_s)
 
         return ""
