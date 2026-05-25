@@ -78,13 +78,14 @@ class QwenModel(AbstractModel):
             msgs, tokenize=False, add_generation_prompt=True, add_vision_id=True
         )
         imgs, vids = process_vision_info(msgs)
+        device = "cuda" if torch.cuda.is_available() else "cpu"
         inputs = self.processor(
             text=[prompt],
             images=imgs,
             videos=vids,
             padding=True,
             return_tensors="pt",
-        ).to(self.device)
+        ).to(device)
 
         vis_counts = []
         if "image_grid_thw" in inputs:
