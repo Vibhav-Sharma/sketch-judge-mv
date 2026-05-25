@@ -5,4 +5,5 @@ from .base import register_model, make_model  # re-export for convenience
 # Import wrappers for side-effect registration
 from . import qwen
 from . import gpt
+from . import gemini
 # from . import qianfan
